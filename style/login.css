@@ -1,0 +1,140 @@
+/* ===============================
+   RESET & ROOT
+=============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-black: #000;
+  --text-white: #fff;
+  --text-muted: #b5b5b5;
+  --accent: #e5e5e5;
+  --radius-lg: 22px;
+  --radius-sm: 10px;
+  --transition: 0.35s ease;
+}
+
+/* ===============================
+   BODY WITH BACKGROUND IMAGE
+=============================== */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  background: 
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
+    url("assets/signup-bg.jpg") center / cover no-repeat;
+  color: #fff;
+}
+
+/* ===============================
+   CENTER WRAPPER
+=============================== */
+.auth-wrapper {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+/* ===============================
+   AUTH CARD
+=============================== */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, #0e0e0e, #050505);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+}
+
+/* Logo */
+.auth-logo {
+  width: 140px;
+  margin: 0 auto 10px;
+}
+
+/* Heading */
+.auth-card h1 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* ===============================
+   INPUTS
+=============================== */
+input {
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #222;
+  background: #111;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ===============================
+   BUTTON
+=============================== */
+.btn {
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+}
+
+.btn.primary {
+  background: #fff;
+  color: #000;
+}
+
+.btn.primary:hover {
+  background: #f2f2f2;
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   SWITCH LINK
+=============================== */
+.auth-switch {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.auth-switch a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.auth-switch a:hover {
+  color: var(--accent);
+}
+
+/* ===============================
+   RESPONSIVE
+=============================== */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 30px 24px;
+  }
+}

@@ -1,0 +1,134 @@
+/* =================================
+   RESET
+================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =================================
+   ROOT
+================================= */
+:root {
+  --bg-black: #000;
+  --text-white: #fff;
+  --text-muted: #b5b5b5;
+  --accent: #e5e5e5;
+  --transition: 0.35s ease;
+}
+
+/* =================================
+   BODY
+================================= */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-black);
+  color: var(--text-white);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* =================================
+   WELCOME SECTION
+================================= */
+.welcome {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background Image */
+.welcome-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.35);
+}
+
+/* =================================
+   CONTENT
+================================= */
+.welcome-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 20px;
+}
+
+/* Logo */
+.welcome-logo {
+  width: 160px;
+  max-width: 70%;
+}
+
+/* Motto */
+.welcome-motto {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* =================================
+   BUTTONS
+================================= */
+.welcome-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 14px 38px;
+  border-radius: 999px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+/* Primary */
+.btn.primary {
+  background: #fff;
+  color: #000;
+}
+
+.btn.primary:hover {
+  background: #f2f2f2;
+  transform: translateY(-2px);
+}
+
+/* Outline */
+.btn.outline {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.btn.outline:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+}
+
+/* =================================
+   RESPONSIVE
+================================= */
+@media (max-width: 600px) {
+  .welcome-logo {
+    width: 130px;
+  }
+
+  .welcome-actions {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

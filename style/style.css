@@ -1,0 +1,159 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --white: #fff;
+  --muted: #b5b5b5;
+  --card-bg: #0e0e0e;
+  --radius-lg: 22px;
+  --radius-sm: 12px;
+  --transition: 0.4s ease;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 6%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 32px;
+}
+
+.navbar nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.navbar nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--white);
+  transition: width var(--transition);
+}
+
+.navbar nav a:hover::after {
+  width: 100%;
+}
+
+/* ================= CATEGORY HERO ================= */
+.category-hero {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('assets/category-hero.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.category-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 12px;
+}
+
+.category-hero p {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+/* ================= CATEGORY GRID ================= */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  padding: 100px 6%;
+}
+
+.car-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.car-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.car-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+}
+
+.car-card h3 {
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.btn {
+  padding: 14px 36px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all var(--transition);
+  display: inline-block;
+  text-align: center;
+}
+
+.btn.outline {
+  border: 1px solid var(--white);
+  color: var(--white);
+  background: transparent;
+}
+
+.btn.outline:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: center;
+  }
+
+  .category-grid {
+    gap: 20px;
+    padding: 60px 4%;
+  }
+}
