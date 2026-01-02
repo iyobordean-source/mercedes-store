@@ -1,0 +1,86 @@
+/* =================================================
+   AUTH PAGE CENTERING (CRITICAL)
+================================================= */
+.auth-body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #000;
+  padding: 20px;
+}
+
+/* =================================================
+   SIGNUP / LOGIN FORM (START)
+================================================= */
+.form-container {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, #0e0e0e, #050505);
+  padding: 40px;
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+}
+
+.form-container h2 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-container input {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #222;
+  background: #111;
+  color: #fff;
+}
+
+.form-container input::placeholder {
+  color: #b5b5b5;
+}
+
+.form-container input:focus {
+  outline: none;
+  border-color: #e5e5e5;
+}
+
+/* SIGN UP BUTTON */
+.form-container button {
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: 0.35s ease;
+}
+
+.form-container button:hover {
+  transform: translateY(-2px);
+  background: #f2f2f2;
+}
+
+/* SWITCH LINK */
+.switch-auth {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #b5b5b5;
+}
+
+.switch-link {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.switch-link:hover {
+  color: #e5e5e5;
+}
+/* =================================================
+   SIGNUP / LOGIN FORM (END)
+================================================= */
