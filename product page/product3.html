@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AMG GT | Mercedes-Benz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- USE YOUR EXISTING PRODUCT CSS -->
+  <link rel="stylesheet" href="/style/product.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="../structure-html/home.html">Home</a>
+    <a href="../structure-html/category.html">Category</a>
+    <a href="../structure-html/cart.html">Cart (<span id="cart-count">0</span>)</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="/assets/G-wagon.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay">
+      <h1>Mercedes-AMG GT</h1>
+      <p>Pure performance engineered for dominance.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCT DETAILS -->
+  <section class="product-details">
+
+    <!-- IMAGE -->
+    <img 
+      src="/assets/AMG GT.jpeg" 
+      alt="Mercedes AMG GT"
+      class="product-img"
+    >
+
+    <!-- INFO -->
+    <div class="product-info">
+      <h2>AMG GT</h2>
+      <p>
+        The Mercedes-AMG GT is built for drivers who demand precision,
+        power, and presence. A handcrafted AMG engine, aggressive
+        aerodynamics, and race-inspired interior define a car
+        engineered to thrill.
+      </p>
+
+      <!-- QUANTITY -->
+      <div class="quantity-wrapper">
+        <button onclick="changeQty(-1)">−</button>
+        <span id="qty">1</span>
+        <button onclick="changeQty(1)">+</button>
+      </div>
+
+      <!-- ADD TO CART -->
+      <button class="btn primary" onclick="addToCart()">
+        Add to Cart
+      </button>
+    </div>
+
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <h2>What Drivers Say</h2>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p>
+          “The AMG GT feels like a race car refined for the road.
+          Every acceleration is addictive.”
+        </p>
+        <span>— Michael R.</span>
+      </div>
+
+      <div class="testimonial-card">
+        <p>
+          “From the exhaust note to the steering response,
+          this is pure AMG magic.”
+        </p>
+        <span>— Daniel K.</span>
+      </div>
+
+      <div class="testimonial-card">
+        <p>
+          “Aggressive, luxurious, and brutally fast.
+          Nothing else compares.”
+        </p>
+        <span>— James L.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+    let qty = 1;
+
+    function changeQty(amount) {
+      qty = Math.max(1, qty + amount);
+      document.getElementById("qty").textContent = qty;
+    }
+
+    function addToCart() {
+      const product = {
+        id: "amg-gt",
+        name: "Mercedes-AMG GT",
+        price: 85000000,
+        qty: qty,
+        img: "../assets-img and vid/amg-gt.jpg"
+      };
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existing = cart.find(item => item.id === product.id);
+
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Added to cart");
+    }
+  </script>
+
+</body>
+</html>

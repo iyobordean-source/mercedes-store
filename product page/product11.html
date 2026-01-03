@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mercedes-Maybach | Product</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* ================= ROOT ================= */
+    :root {
+      --black: #000;
+      --white: #fff;
+      --muted: #b5b5b5;
+      --card: #0e0e0e;
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --transition: 0.35s ease;
+    }
+
+    /* ================= RESET ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ================= PRODUCT LAYOUT ================= */
+    .product-page {
+      padding: 100px 6%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    /* ================= IMAGE ================= */
+    .product-image img {
+      height: 460px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+
+    /* ================= CONTENT ================= */
+    .product-content h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .product-content p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .price {
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+    }
+
+    /* ================= QUANTITY ================= */
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .quantity-control button {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--white);
+      background: transparent;
+      color: var(--white);
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .quantity-control button:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .quantity {
+      font-size: 1.2rem;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    /* ================= ADD TO CART ================= */
+    .add-cart {
+      padding: 16px 40px;
+      border-radius: 999px;
+      border: none;
+      background: var(--white);
+      color: #000;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .add-cart:hover {
+      transform: translateY(-2px);
+      background: #f2f2f2;
+    }
+
+    .total {
+      margin-top: 16px;
+      color: var(--muted);
+    }
+
+    /* ================= TESTIMONIALS ================= */
+    .testimonials {
+      padding: 100px 6%;
+      background: #050505;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 60px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: linear-gradient(180deg, #111, #070707);
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .testimonial-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .testimonial-card span {
+      font-weight: 500;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 900px) {
+      .product-page {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .product-image img {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= PRODUCT ================= -->
+  <section class="product-page">
+    <div class="product-image">
+      <!-- Replace with actual Maybach image -->
+      <img src="/assets/maybach.jpeg" alt="Mercedes-Maybach">
+    </div>
+
+    <div class="product-content">
+      <h1>Mercedes-Maybach</h1>
+
+      <p>
+        The Mercedes-Maybach defines ultimate luxury with unmatched craftsmanship, 
+        exquisite interior materials, and advanced technologies for the most 
+        refined driving experience imaginable.
+      </p>
+
+      <div class="price">₦150,000,000</div>
+
+      <!-- Quantity Selector -->
+      <div class="quantity-control">
+        <button onclick="decrease()">−</button>
+        <div class="quantity" id="qty">1</div>
+        <button onclick="increase()">+</button>
+      </div>
+
+      <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+      <div class="total" id="total">Total: ₦150,000,000</div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="testimonials">
+    <h2>What Maybach Owners Say</h2>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p>
+          “The Maybach feels like a first-class suite on wheels — pure elegance.”
+        </p>
+        <span>— Charles M.</span>
+      </div>
+
+      <div class="testimonial-card">
+        <p>
+          “Unmatched comfort, silence, and luxurious finishes in every detail.”
+        </p>
+        <span>— Isabella R.</span>
+      </div>
+
+      <div class="testimonial-card">
+        <p>
+          “Every journey becomes an experience — the Maybach is perfection.”
+        </p>
+        <span>— Alexander P.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCRIPT ================= -->
+  <script>
+    let quantity = 1;
+    const price = 150000000;
+
+    const qtyEl = document.getElementById("qty");
+    const totalEl = document.getElementById("total");
+
+    function updateTotal() {
+      totalEl.textContent =
+        "Total: ₦" + (price * quantity).toLocaleString();
+    }
+
+    function increase() {
+      quantity++;
+      qtyEl.textContent = quantity;
+      updateTotal();
+    }
+
+    function decrease() {
+      if (quantity > 1) {
+        quantity--;
+        qtyEl.textContent = quantity;
+        updateTotal();
+      }
+    }
+
+    function addToCart() {
+      alert(quantity + " Maybach vehicle(s) added to cart");
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart | Mercedes-Benz</title>
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+      --muted: #b5b5b5;
+      --card-bg: #0e0e0e;
+      --radius: 12px;
+      --transition: 0.35s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    h1 { text-align: center; margin: 40px 0; }
+
+    .cart-container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+
+    th { color: var(--muted); }
+
+    td img {
+      width: 120px;
+      border-radius: var(--radius);
+    }
+
+    .qty-btn {
+      padding: 6px 14px;
+      border: 1px solid var(--white);
+      background: transparent;
+      color: var(--white);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .qty-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .remove-btn {
+      padding: 6px 14px;
+      background: #ff0000;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .remove-btn:hover { background: #cc0000; }
+
+    .total-section {
+      text-align: right;
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+    }
+
+    .checkout-btn {
+      display: block;
+      margin-left: auto;
+      padding: 14px 40px;
+      border-radius: 999px;
+      border: none;
+      background: var(--white);
+      color: #000;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .checkout-btn:hover {
+      transform: translateY(-2px);
+      background: #f2f2f2;
+    }
+
+    @media(max-width:768px){
+      td img { width: 80px; }
+      th, td { padding: 12px; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Your Cart</h1>
+  <div class="cart-container">
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Cart items populated by JS -->
+      </tbody>
+    </table>
+
+    <div class="total-section">
+      Total: ₦<span id="total">0</span>
+    </div>
+
+    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+  </div>
+
+  <script>
+    // ================= SAMPLE CART DATA =================
+    // This simulates what you will store in localStorage
+    // Later, each product added will push to this array
+    let cart = JSON.parse(localStorage.getItem("cart")) || [
+      {
+        id: "slc",
+        name: "Mercedes-SLC",
+        price: 45000000,
+        qty: 2,
+        img: "assets-img/slc.jpg"
+      },
+      {
+        id: "g-wagon",
+        name: "Mercedes G-Wagon",
+        price: 90000000,
+        qty: 1,
+        img: "assets-img/g-wagon.jpeg"
+      }
+    ];
+
+    const tbody = document.querySelector("#cart-table tbody");
+    const totalEl = document.getElementById("total");
+
+    function renderCart() {
+      tbody.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td><img src="${item.img}" alt="${item.name}"></td>
+          <td>${item.name}</td>
+          <td>₦${item.price.toLocaleString()}</td>
+          <td>
+            <button class="qty-btn" onclick="decrease(${index})">−</button>
+            ${item.qty}
+            <button class="qty-btn" onclick="increase(${index})">+</button>
+          </td>
+          <td>₦${subtotal.toLocaleString()}</td>
+          <td><button class="remove-btn" onclick="remove(${index})">Remove</button></td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+
+      totalEl.textContent = total.toLocaleString();
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function increase(index){
+      cart[index].qty++;
+      renderCart();
+    }
+
+    function decrease(index){
+      if(cart[index].qty > 1){
+        cart[index].qty--;
+        renderCart();
+      }
+    }
+
+    function remove(index){
+      cart.splice(index,1);
+      renderCart();
+    }
+
+    function checkout(){
+      alert("Proceeding to checkout with " + cart.length + " item(s).");
+      // Here is where you'll connect Firebase later
+    }
+
+    renderCart();
+    function checkout() {
+  // Optional: block empty cart
+  if (cart.length === 0) {
+    alert("Your cart is empty.");
+    return;
+  }
+
+  // Save latest cart state (important)
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Navigate to checkout page
+  window.location.href = "checkout.html";
+}
+
+  </script>
+
+</body>
+</html>

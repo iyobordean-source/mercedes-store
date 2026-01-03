@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>S-Class | Mercedes-Benz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style/product.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="product-nav">
+  <a href="/structure/home.html">Home</a>
+  <a href="/structure/category.html">Category</a>
+  <a href="/structure/cart.html">
+    Cart (<span id="cart-count">0</span>)
+  </a>
+</nav>
+
+<main class="product-page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- VIDEO PLACEHOLDER -->
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="/assets/G-wagon.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-overlay">
+      <h1>S-Class</h1>
+      <p>The benchmark for luxury, innovation, and comfort.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCT DETAILS -->
+  <section class="product-details">
+
+    <img 
+      src="/assets/S-class.jpeg" 
+      alt="Mercedes-Benz S-Class" 
+      class="product-img"
+    >
+
+    <div class="product-info">
+      <h2>Mercedes-Benz S-Class</h2>
+
+      <p class="description">
+        The S-Class represents the pinnacle of Mercedes-Benz engineering.
+        From cutting-edge driver assistance systems to unmatched interior
+        comfort, every detail is crafted to deliver a first-class experience.
+      </p>
+
+      <p class="price">Price: ₦110,000,000</p>
+
+      <div class="quantity-wrapper">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" min="1" value="1">
+      </div>
+
+      <button id="add-to-cart" class="btn primary">
+        Add to Cart
+      </button>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <h2>Owner Experiences</h2>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p>
+          “The S-Class feels like a private jet on wheels. Absolute perfection.”
+        </p>
+        <span>— Richard A.</span>
+      </div>
+
+      <div class="testimonial-card">
+        <p>
+          “Every drive feels effortless. The interior comfort is unmatched.”
+        </p>
+        <span>— Angela M.</span>
+      </div>
+
+      <div class="testimonial-card">
+        <p>
+          “Mercedes truly set the standard with the S-Class.”
+        </p>
+        <span>— David K.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- CART SCRIPT -->
+<script>
+  const product = {
+    id: "s-class",
+    name: "Mercedes-Benz S-Class",
+    price: 110000000,
+    img: "/assets-img/s-class.jpg"
+  };
+
+  const addBtn = document.getElementById("add-to-cart");
+  const quantityInput = document.getElementById("quantity");
+  const cartCountEl = document.getElementById("cart-count");
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const total = cart.reduce((sum, item) => sum + item.qty, 0);
+    cartCountEl.textContent = total;
+  }
+
+  addBtn.addEventListener("click", () => {
+    const qty = parseInt(quantityInput.value) || 1;
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(item => item.id === product.id);
+
+    if (existing) {
+      existing.qty += qty;
+    } else {
+      cart.push({ ...product, qty });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+
+    alert(`${qty} S-Class added to cart`);
+  });
+
+  updateCartCount();
+</script>
+
+</body>
+</html>
